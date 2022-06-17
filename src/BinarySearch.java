@@ -4,49 +4,26 @@ import java.util.Scanner;
 
 public class BinarySearch {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the size of the array: ");
-        int len = sc.nextInt();
-        sc.nextLine();
+        int[] arr = {1,4,6,9,12,45,67};
+        boolean bool = binarySearch(arr, 67);
+    }
 
-        ArrayList<Integer> arr = new ArrayList<>();
+    public static Boolean binarySearch(int[] arr, int num) {
+        int start = 0, last = arr.length-1, mid = (start + last)/2;
 
-        System.out.print("You shall now input the elements of the array: \n");
-
-        for (int i = 0; i < len; i ++) {
-            System.out.println("Enter " + i + " element:");
-            arr.add(i, sc.nextInt());
-            sc.nextLine();
+        while (last >= start) {
+            if (arr[mid] == num) {
+                System.out.println("Found num at index: " + mid);
+                return true;
+            }
+            if (num < arr[mid]) {
+                last = mid-1;
+            }
+            if (num > arr[mid]) {
+                start = mid +1;
+            }
+            mid = (start + last)/2;
         }
-        Collections.sort(arr);
-        System.out.println("Printing out your array: ");
-        for (int j = 0; j < len; j ++) {
-            System.out.print(arr.get(j));
-            System.out.print(" ");
-        }
-        sc.nextLine();
-        System.out.println("Enter the element you want to find:");
-        int number = sc.nextInt();
-        sc.nextLine();
-        int low = 0, high = len-1, mid = (low + high)/2;
-        while(low < high) {
-            if (number == arr.get(mid)) {
-                System.out.println("your number is at: " + mid + " position");
-                break;
-            }
-            if (number < arr.get(mid)) {
-                high = mid;
-                mid = (low + high)/2;
-            }
-            if (number > arr.get(mid)) {
-                low = mid;
-                mid = (low + high)/2;
-            }
-            else {
-                System.out.println("The number you are looking for is not here");
-                break;
-            }
-        }
-        sc.close();
+        return false;
     }
 }

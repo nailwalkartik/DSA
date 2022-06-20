@@ -1,22 +1,63 @@
+import java.io.InputStream;
+import java.util.Scanner;
+
 public class Fibonacci {
+    static long first = 0, second = 1, third;
+    static long n1 = 0, n2 = 1, n3 = n1 + n2;
     /**
      * fibonacci series: 0, 1, 1, 2, 3, 5, 8, 13
      */
     public static void main(String[] args) {
-        long first = 0;
-        long second = 1;
-        long third = first + second;
-        int num = 15;
 
-        System.out.print(first + " " + second + " " + third + " ");
+        Scanner sc = new Scanner(System.in);
 
-        for(int i = 2; i < num; i ++) {
+        System.out.print("Enter count: ");
+        int count = sc.nextInt();
+
+        System.out.println("Using simple Iteration: ");
+//        System.out.print(first + " " + second + " ");
+
+        simpleIteration(count);
+
+        System.out.println("Using recursive strategy: ");
+//        System.out.print(n1 + " " + n2 + " ");
+//
+        recursiveMethod(count - 2);
+        System.out.print(n3 + "\n");
+
+        System.out.println("Dynamic programming strategy: ");
+        int f = dPMethod(count);
+        System.out.println(f);
+    }
+
+    public static void simpleIteration (int count) {
+        for(int i = 2; i < count; i ++) {
+            third = first + second;
             first = second;
             second = third;
-            third = first + second;
-            System.out.print(third + " ");
+//            System.out.print(third + " ");
+        }
+        System.out.println(third);
+    }
+
+    public static void recursiveMethod(int count) {
+        if (count > 0) {
+            n3 = n1 + n2;
+            n1 = n2;
+            n2 = n3;
+//            System.out.print(n3 + " ");
+            recursiveMethod(count - 1);
         }
     }
 
-    public
+    public static int dPMethod(int num) {
+        int[] f = new int[num + 2];
+        f[0] = 0;
+        f[1] = 1;
+
+        for (int i = 2; i <= num; i ++) {
+            f[i] = f[i-1] + f[i - 2];
+        }
+        return f[num-1];
+    }
 }

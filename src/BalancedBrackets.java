@@ -3,7 +3,7 @@ import java.util.Deque;
 
 public class BalancedBrackets {
     public static void main(String[] args) {
-        String expression = "[]";
+        String expression = "[({[([{}])]})}";
         Boolean bool = checkBalancedBrackets(expression);
     }
     public static boolean checkBalancedBrackets(String expression) {

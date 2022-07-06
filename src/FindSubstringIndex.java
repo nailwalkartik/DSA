@@ -1,6 +1,6 @@
 public class FindSubstringIndex {
     public static void main(String[] args) {
-        String s = "1231231234";
+        String s = "12312312341";
         String x = "41";
 
         int xInd = 0;
